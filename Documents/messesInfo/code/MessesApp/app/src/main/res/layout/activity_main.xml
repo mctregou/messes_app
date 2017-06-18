@@ -3,26 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.main.MainActivity"
-    android:background="@color/yellow">
+    android:background="@color/yellow"
+    tools:context=".modules.main.MainActivity">
 
-    <TextView
-        android:id="@+id/title"
+    <RelativeLayout
+        android:id="@+id/topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        android:textAllCaps="true"
-        android:padding="5dp"
         android:background="@color/blue"
-        android:textSize="14sp"
-        android:text="Autour de moi" />
+        android:padding="10dp">
 
-    <TextView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/title"
-        android:text="Main" />
+        android:layout_below="@+id/topbar"
+        android:gravity="center"/>
 </RelativeLayout>
