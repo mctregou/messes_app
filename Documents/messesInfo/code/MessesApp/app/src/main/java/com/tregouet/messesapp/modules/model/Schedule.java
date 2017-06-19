@@ -30,4 +30,15 @@ public class Schedule {
     public void setHours(ArrayList<Integer> hours) {
         this.hours = hours;
     }
+
+    public String getStringHours() {
+        String result = "";
+        for (int i=0; i<hours.size(); i++){
+            if (i!=0){
+                result += ", ";
+            }
+            result += hours.get(i) + "h";
+        }
+        return result;
+    }
 }

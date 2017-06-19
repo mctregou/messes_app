@@ -3,9 +3,8 @@
 
     <string name="back">Retour</string>
     <string name="tuto">Tu cherches une messe ? Tu as du temps pour une petite adoration ? Ou tu veux simplement connaître les églises de ton quartier ? \n\nBravo ! Tu as téléchargé la bonne application. \n\nAvec NomDeLApplication, rien de plus simple. Clique sur la loupe pour affiner ta recherche et les résultats apparaissent sur la carte. Tu n\'aimes pas la carte ? Clique sur l\'onglet Liste pour afficher les résultats sous forme de liste. \n\nUne remarque ou des idées d\'améliorations ? N\'hésite pas à cliquer sur le lien ci-dessous pour nous envoyer un petit mail ! \n\n> Donne nous ton avis</string>
-
-    <array name="search">
-        <item name="Liste"/>
-        <item name="Carte"/>
-    </array>
+    <string name="zipcode_city" formatted="false">%s, %s</string>
+    <string name="schedule" formatted="false">%s : %s</string>
+    <string name="number_of_results" formatted="false">%d résultats !</string>
+    <string name="zero_result">Aucun résultat</string>
 </resources>
