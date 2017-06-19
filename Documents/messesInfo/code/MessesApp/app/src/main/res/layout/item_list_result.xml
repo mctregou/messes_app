@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Saint Trinité de Paris"
             android:textAllCaps="true"
+            android:textStyle="bold"
             android:textColor="@color/red" />
 
 
