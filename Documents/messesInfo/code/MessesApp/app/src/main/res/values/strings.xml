@@ -8,4 +8,15 @@
     <string name="schedule" formatted="false">%s : %s</string>
     <string name="number_of_results" formatted="false">%d résultats !</string>
     <string name="zero_result">Aucun résultat</string>
+
+    <string name="schedules">Horaires</string>
+    <string name="contact">Contact</string>
+
+    <string name="masses">Messes</string>
+    <string name="openings">Ouvertures</string>
+    <string name="confessions">Confessions</string>
+    <string name="receptions">Accueil</string>
+    <string name="adorations">Adorations</string>
+    <string name="praises">Louange</string>
+    <string name="rosaries">Chapelet</string>
 </resources>

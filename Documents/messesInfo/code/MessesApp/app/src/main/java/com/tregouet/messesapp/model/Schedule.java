@@ -9,10 +9,17 @@ public class Schedule {
 
     private String day;
     private ArrayList<Integer> hours;
+    private String description;
 
     public Schedule(String day, ArrayList<Integer> hours) {
         this.day = day;
         this.hours = hours;
+    }
+
+    public Schedule(String day, ArrayList<Integer> hours, String description) {
+        this.day = day;
+        this.hours = hours;
+        this.description = description;
     }
 
     public String getDay() {
@@ -40,5 +47,13 @@ public class Schedule {
             result += hours.get(i) + "h";
         }
         return result;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

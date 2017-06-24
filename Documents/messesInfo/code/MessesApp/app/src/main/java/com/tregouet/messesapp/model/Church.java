@@ -16,6 +16,7 @@ public class Church {
     private float latitude;
     private float longitude;
     private String phone;
+    private String mail;
     private String website;
     private String facebook;
     private Activity activity;
@@ -92,6 +93,14 @@ public class Church {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getWebsite() {

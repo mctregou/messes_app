@@ -1,6 +1,7 @@
 package com.tregouet.messesapp.modules.search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,8 +13,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tregouet.messesapp.R;
+import com.tregouet.messesapp.model.Church;
+import com.tregouet.messesapp.model.Schedule;
 import com.tregouet.messesapp.model.SearchResult;
+import com.tregouet.messesapp.modules.church.ChurchActivity;
+import com.tregouet.messesapp.modules.church.ChurchEvent;
 import com.tregouet.messesapp.util.Tools;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -85,23 +92,24 @@ public class SearchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
         public void bind(SearchResult result) {
-            name.setText(result.getName());
-            address.setText(result.getAddress());
-            if (result.getZipcode() != null && !result.getZipcode().equals("") && result.getCity() != null && !result.getCity().equals("")) {
-                zipcode.setText(String.format(context.getString(R.string.zipcode_city), result.getZipcode(), result.getCity()));
-            } else if (result.getZipcode() != null) {
-                zipcode.setText(result.getZipcode());
-            } else if (result.getCity() != null) {
-                zipcode.setText(result.getCity());
+            this.result = result;
+            name.setText(result.getChurch().getName());
+            address.setText(result.getChurch().getAddress());
+            if (result.getChurch().getZipcode() != null && !result.getChurch().getZipcode().equals("") && result.getChurch().getCity() != null && !result.getChurch().getCity().equals("")) {
+                zipcode.setText(String.format(context.getString(R.string.zipcode_city), result.getChurch().getZipcode(), result.getChurch().getCity()));
+            } else if (result.getChurch().getZipcode() != null) {
+                zipcode.setText(result.getChurch().getZipcode());
+            } else if (result.getChurch().getCity() != null) {
+                zipcode.setText(result.getChurch().getCity());
             } else {
                 zipcode.setText("");
             }
             schedule.setText(String.format(context.getString(R.string.schedule), result.getSchedule().getDay(), result.getSchedule().getStringHours()));
 
-            System.out.println("adapter = " + result.getImage());
-            if (result.getImage() != null && !result.getImage().equals("")) {
+            System.out.println("adapter = " + result.getChurch().getImage());
+            if (result.getChurch().getImage() != null && !result.getChurch().getImage().equals("")) {
                 Glide.with(context)
-                        .load(result.getImage())
+                        .load(result.getChurch().getImage())
                         .into(picture);
             }
         }
@@ -114,7 +122,8 @@ public class SearchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             mOptionsLastClickTime = SystemClock.elapsedRealtime();
 
             if (Tools.isNetworkAvailable(context)) {
-                //TODO show church
+                EventBus.getDefault().postSticky(new ChurchEvent(result.getChurch()));
+                context.startActivity(new Intent(context, ChurchActivity.class));
             }
         }
     }

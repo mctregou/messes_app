@@ -85,9 +85,9 @@ public class SearchMapFragment extends Fragment implements OnMapReadyCallback, G
         for (SearchResult result : event.getResults()){
             MarkerOptions marker = new MarkerOptions();
             marker.icon(pin);
-            marker.title(result.getName());
-            marker.snippet(result.getAddress());
-            marker.position(new LatLng(result.getLatitude(), result.getLongitude()));
+            marker.title(result.getChurch().getName());
+            marker.snippet(result.getChurch().getAddress());
+            marker.position(new LatLng(result.getChurch().getLatitude(), result.getChurch().getLongitude()));
 
             Marker createdMarker = googleMap.addMarker(marker);
             hashMap.put(createdMarker, result);
