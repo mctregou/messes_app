@@ -51,4 +51,10 @@ dependencies {
 
     //EventBus
     compile 'org.greenrobot:eventbus:3.0.0'
+
+    //Map
+    // Google Play Services (for Map)
+    // use two sub libraries instead of  whole library to avoid exceeding 64 K methods error while compiling
+    compile 'com.google.android.gms:play-services-maps:10.0.1'
+    compile 'com.google.android.gms:play-services-location:10.0.1'
 }

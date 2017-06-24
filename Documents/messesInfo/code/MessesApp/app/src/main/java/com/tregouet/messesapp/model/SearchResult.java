@@ -1,6 +1,4 @@
-package com.tregouet.messesapp.modules.model;
-
-import java.util.ArrayList;
+package com.tregouet.messesapp.model;
 
 /**
  * Created by mariececile.tregouet on 18/06/2017.

@@ -5,15 +5,10 @@
     android:orientation="vertical"
     android:background="@color/red">
 
-    <TextView
-        android:id="@+id/title"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Carte"
-        android:layout_centerInParent="true"
-        android:textColor="@android:color/white"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:layout_height="match_parent"
+        android:apiKey="@string/google_API_key"
+        android:clickable="true" />
 </RelativeLayout>

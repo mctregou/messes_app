@@ -1,7 +1,6 @@
 package com.tregouet.messesapp.modules.search;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tregouet.messesapp.R;
-import com.tregouet.messesapp.modules.model.SearchResult;
+import com.tregouet.messesapp.model.SearchResult;
 import com.tregouet.messesapp.util.Tools;
 
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by mctregouet on 02/11/16.

@@ -1,4 +1,4 @@
-package com.tregouet.messesapp.modules.model;
+package com.tregouet.messesapp.model;
 
 import java.util.ArrayList;
 
