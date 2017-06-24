@@ -27,8 +27,14 @@ public class FilterFragment extends Fragment {
         return view;
     }
 
-    @OnClick(R.id.back)
+    @OnClick(R.id.cancel)
     public void closeFilter(){
+        Log.i(getClass().getSimpleName(), "closeFilter()");
+        ((MainActivity)getActivity()).openFilter();
+    }
+
+    @OnClick(R.id.validate)
+    public void closeFilter2(){
         Log.i(getClass().getSimpleName(), "closeFilter()");
         ((MainActivity)getActivity()).openFilter();
     }

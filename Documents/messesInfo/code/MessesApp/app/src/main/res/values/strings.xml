@@ -2,16 +2,19 @@
     <string name="app_name">NomDeLApplication</string>
     <string name="google_API_key" translatable="false">AIzaSyDjuS-lDlMhuru62VHJzKkGDI07yvfPqIU</string>
 
+    //Tuto
     <string name="back">Retour</string>
     <string name="tuto">Tu cherches une messe ? Tu as du temps pour une petite adoration ? Ou tu veux simplement connaître les églises de ton quartier ? \n\nBravo ! Tu as téléchargé la bonne application. \n\nAvec NomDeLApplication, rien de plus simple. Clique sur la loupe pour affiner ta recherche et les résultats apparaissent sur la carte. Tu n\'aimes pas la carte ? Clique sur l\'onglet Liste pour afficher les résultats sous forme de liste. \n\nUne remarque ou des idées d\'améliorations ? N\'hésite pas à cliquer sur le lien ci-dessous pour nous envoyer un petit mail ! \n\n> Donne nous ton avis</string>
+
+    //Search
     <string name="zipcode_city" formatted="false">%s, %s</string>
     <string name="schedule" formatted="false">%s : %s</string>
     <string name="number_of_results" formatted="false">%d résultats !</string>
     <string name="zero_result">Aucun résultat</string>
 
+    //Church
     <string name="schedules">Horaires</string>
     <string name="contact">Contact</string>
-
     <string name="masses">Messes</string>
     <string name="openings">Ouvertures</string>
     <string name="confessions">Confessions</string>
@@ -19,4 +22,17 @@
     <string name="adorations">Adorations</string>
     <string name="praises">Louange</string>
     <string name="rosaries">Chapelet</string>
+
+    //Filter
+    <string name="you_are_searching">Tu recherches ... </string>
+    <string name="masse">Messe</string>
+    <string name="confession">Confession</string>
+    <string name="praise">Louange</string>
+    <string name="adoration">Adoration</string>
+    <string name="activity">Activité</string>
+    <string name="where">Où ?</string>
+    <string name="write_a_city">Entre une ville</string>
+    <string name="when">Quand ?</string>
+    <string name="cancel">Annuler</string>
+    <string name="validate">Valider</string>
 </resources>

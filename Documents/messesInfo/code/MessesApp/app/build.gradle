@@ -52,6 +52,9 @@ dependencies {
     //EventBus
     compile 'org.greenrobot:eventbus:3.0.0'
 
+    //Material
+    compile 'com.github.rey5137:material:1.2.4'
+
     //Map
     // Google Play Services (for Map)
     // use two sub libraries instead of  whole library to avoid exceeding 64 K methods error while compiling
