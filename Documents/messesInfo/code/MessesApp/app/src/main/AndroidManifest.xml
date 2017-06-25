@@ -35,6 +35,10 @@
         <activity
             android:name=".modules.church.ChurchActivity"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".modules.city.CityActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

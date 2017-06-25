@@ -19,46 +19,51 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <com.rey.material.widget.RadioButton
-            android:id="@+id/masse"
-            style="@style/Material.Drawable.RadioButton"
+        <RadioGroup
+            android:id="@+id/RGroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/masse"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/red"
-            android:textSize="14sp" />
+            android:layout_height="wrap_content">
 
-        <com.rey.material.widget.RadioButton
-            android:id="@+id/praise"
-            style="@style/Material.Drawable.RadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/praise"
-            android:textAlignment="center"
-            android:textColor="@color/red"
-            android:layout_gravity="center_vertical"
-            android:textSize="14sp" />
+            <RadioButton
+                android:id="@+id/masse"
+                style="@style/Material.Drawable.RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/masse"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
 
-        <com.rey.material.widget.RadioButton
-            android:id="@+id/confession"
-            style="@style/Material.Drawable.RadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/confession"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/red"
-            android:textSize="14sp" />
+            <RadioButton
+                android:id="@+id/praise"
+                style="@style/Material.Drawable.RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/praise"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
 
-        <com.rey.material.widget.RadioButton
-            android:id="@+id/activity"
-            style="@style/Material.Drawable.RadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/activity"
-            android:textColor="@color/red"
-            android:textSize="14sp" />
+            <RadioButton
+                android:id="@+id/confession"
+                style="@style/Material.Drawable.RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/confession"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/activity"
+                style="@style/Material.Drawable.RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/activity"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+        </RadioGroup>
 
 
         <TextView
@@ -75,12 +80,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:background="@drawable/shape_rectangle_radius_5_white_border_gray"
             android:hint="@string/write_a_city"
             android:padding="5dp"
-            android:textColorHint="@color/red"
             android:textColor="@color/red"
-            android:textSize="14sp"
-            android:background="@drawable/shape_rectangle_radius_5_white_border_gray" />
+            android:textColorHint="@color/red"
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -91,12 +96,12 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <ImageView
+        <CalendarView
             android:id="@+id/date_picker"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_height="200dp"/>
+            android:layout_marginTop="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,12 +113,12 @@
                 android:id="@+id/cancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center"
-                android:padding="10dp"
                 android:layout_margin="10dp"
+                android:layout_weight="1"
                 android:background="@drawable/shape_rectangle_radius_5_red"
                 android:gravity="center"
+                android:padding="10dp"
                 android:text="@string/cancel"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
@@ -124,11 +129,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:layout_margin="10dp"
-                android:padding="10dp"
+                android:layout_weight="1"
                 android:background="@drawable/shape_rectangle_radius_5_red"
                 android:gravity="center"
+                android:padding="10dp"
                 android:text="@string/validate"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
