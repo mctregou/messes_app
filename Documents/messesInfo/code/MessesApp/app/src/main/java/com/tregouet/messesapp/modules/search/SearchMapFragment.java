@@ -1,9 +1,12 @@
 package com.tregouet.messesapp.modules.search;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -11,7 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,6 +32,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.tregouet.messesapp.R;
 import com.tregouet.messesapp.model.SearchResult;
+import com.tregouet.messesapp.modules.church.ChurchActivity;
+import com.tregouet.messesapp.modules.church.ChurchEvent;
+import com.tregouet.messesapp.util.Tools;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -35,6 +44,7 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by mctregouet on 02/11/2016.
@@ -44,6 +54,24 @@ public class SearchMapFragment extends Fragment implements OnMapReadyCallback, G
 
     @BindView(R.id.mapView)
     MapView mapView;
+
+    @BindView(R.id.bottom_sheet)
+    View bottomSheet;
+
+    @BindView(R.id.picture)
+    ImageView picture;
+
+    @BindView(R.id.name)
+    TextView name;
+
+    @BindView(R.id.address)
+    TextView address;
+
+    @BindView(R.id.zipcode)
+    TextView zipcode;
+
+    @BindView(R.id.schedule)
+    TextView schedule;
 
     private GoogleMap googleMap;
     private HashMap<Marker, SearchResult> hashMap = new HashMap<>();
@@ -56,6 +84,8 @@ public class SearchMapFragment extends Fragment implements OnMapReadyCallback, G
     private BitmapDescriptor pin;
     private BitmapDescriptor pinSelected;
     private Marker selectedMarker;
+    BottomSheetBehavior bottomSheetBehavior = new BottomSheetBehavior();
+    private long mOptionsLastClickTime = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,6 +98,13 @@ public class SearchMapFragment extends Fragment implements OnMapReadyCallback, G
         mapView.onCreate(savedInstanceState);
 
         mapView.getMapAsync(this);
+
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        bottomSheetBehavior.setHideable(true);
+
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+        bottomSheetBehavior.setPeekHeight(bottomSheet.getHeight());
 
         return view;
     }
@@ -180,12 +217,45 @@ public class SearchMapFragment extends Fragment implements OnMapReadyCallback, G
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        Log.i(getClass().getSimpleName(), "onMarkerClick markerId=" + marker);
         if (selectedMarker != null) {
-            selectedMarker.setIcon(pin);
+            System.out.println("selectedMarker.getId=" + selectedMarker.getId());
+            System.out.println("marker.getId=" + marker.getId());
+            if (selectedMarker.getId().equals(marker.getId())){
+                selectedMarker.setIcon(pin);
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                selectedMarker = null;
+                return true;
+            } else {
+                selectedMarker.setIcon(pin);
+            }
         }
         marker.setIcon(pinSelected);
         selectedMarker = marker;
-        return false;
+
+        if (hashMap.get(marker) != null) {
+            System.out.println("onMarkerClick : " + hashMap.get(marker));
+            System.out.println("onMarkerClick getName(): " + hashMap.get(marker).getChurch().getName());
+            name.setText(hashMap.get(marker).getChurch().getName());
+            address.setText(hashMap.get(marker).getChurch().getAddress());
+            if (hashMap.get(marker).getChurch().getZipcode() != null && !hashMap.get(marker).getChurch().getZipcode().equals("") && hashMap.get(marker).getChurch().getCity() != null && !hashMap.get(marker).getChurch().getCity().equals("")) {
+                zipcode.setText(String.format(getActivity().getString(R.string.zipcode_city), hashMap.get(marker).getChurch().getZipcode(), hashMap.get(marker).getChurch().getCity()));
+            } else if (hashMap.get(marker).getChurch().getZipcode() != null) {
+                zipcode.setText(hashMap.get(marker).getChurch().getZipcode());
+            } else if (hashMap.get(marker).getChurch().getCity() != null) {
+                zipcode.setText(hashMap.get(marker).getChurch().getCity());
+            } else {
+                zipcode.setText("");
+            }
+            if (hashMap.get(marker).getChurch().getImage() != null && !hashMap.get(marker).getChurch().getImage().equals("")) {
+                Glide.with(getActivity())
+                        .load(hashMap.get(marker).getChurch().getImage())
+                        .into(picture);
+            }
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        }
+
+        return true;
     }
 
     public void zoomToSeeAllMarkers() {
@@ -210,4 +280,33 @@ public class SearchMapFragment extends Fragment implements OnMapReadyCallback, G
         this.zoom = googleMap.getCameraPosition().zoom;
     }
 
+    @OnClick(R.id.background)
+    public void showChurch(){
+        if (SystemClock.elapsedRealtime() - mOptionsLastClickTime < 1000) {
+            return;
+        }
+        mOptionsLastClickTime = SystemClock.elapsedRealtime();
+
+        if (Tools.isNetworkAvailable(getActivity())) {
+            EventBus.getDefault().postSticky(new ChurchEvent(hashMap.get(selectedMarker).getChurch()));
+            getActivity().startActivity(new Intent(getActivity(), ChurchActivity.class));
+        }
+    }
+
+    @OnClick(R.id.localize)
+    public void localize() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            googleMap.setMyLocationEnabled(true);
+            goToMyPosition();
+        } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        123);
+            }
+    }
+
+    private void goToMyPosition() {
+
+    }
 }
