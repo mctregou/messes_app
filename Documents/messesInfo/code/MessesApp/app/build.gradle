@@ -28,6 +28,12 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            buildConfigField "String", "BASE_URL", "\"http://www.messes.info/api/v2/\""
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            buildConfigField "String", "BASE_URL", "\"http://www.messes.info/api/v2/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -61,4 +67,16 @@ dependencies {
     // use two sub libraries instead of  whole library to avoid exceeding 64 K methods error while compiling
     compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile 'com.google.android.gms:play-services-location:10.0.1'
+
+    // Dagger 2
+    apt 'com.google.dagger:dagger-compiler:2.5'
+    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'com.google.dagger:dagger:2.5'
+
+    //square okhttp3 && retrofit2
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-jackson:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 }

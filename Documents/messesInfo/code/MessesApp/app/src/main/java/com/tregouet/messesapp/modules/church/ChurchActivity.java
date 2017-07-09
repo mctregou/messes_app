@@ -1,14 +1,21 @@
 package com.tregouet.messesapp.modules.church;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +33,7 @@ import com.tregouet.messesapp.modules.filter.FilterFragment;
 import com.tregouet.messesapp.modules.search.SearchEvent;
 import com.tregouet.messesapp.modules.search.SearchFragment;
 import com.tregouet.messesapp.modules.tuto.TutoFragment;
+import com.tregouet.messesapp.util.dialog.GlobalAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -83,6 +91,12 @@ public class ChurchActivity extends AppCompatActivity implements OnMapReadyCallb
 
     @BindView(R.id.mapView)
     MapView mapView;
+
+    @BindView(R.id.schedules_layout)
+    LinearLayout schedulesLayout;
+
+    @BindView(R.id.contact_layout)
+    LinearLayout contactLayout;
 
     private Church church;
     private SchedulesListAdapter massesAdapter;
@@ -153,12 +167,65 @@ public class ChurchActivity extends AppCompatActivity implements OnMapReadyCallb
         }
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (mapView != null) {
-            mapView.onSaveInstanceState(outState);
+    @OnClick(R.id.contact)
+    public void showContact() {
+        if (contactLayout.getVisibility() == View.GONE){
+            contactLayout.setVisibility(View.VISIBLE);
+        } else {
+            contactLayout.setVisibility(View.GONE);
         }
+    }
+
+    @OnClick(R.id.schedules)
+    public void showSchedules() {
+        if (schedulesLayout.getVisibility() == View.GONE){
+            schedulesLayout.setVisibility(View.VISIBLE);
+        } else {
+            schedulesLayout.setVisibility(View.GONE);
+        }
+    }
+
+    @OnClick(R.id.website)
+    public void showWebsite() {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(church.getWebsite()));
+        startActivity(i);
+    }
+
+    @OnClick(R.id.phone)
+    public void call() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 123);
+        } else {
+            final GlobalAlertDialog dialog = new GlobalAlertDialog(this);
+            dialog.setTitle(getString(R.string.call));
+            dialog.setMessage(church.getPhone());
+            dialog.setPositiveButton(R.string.ok, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + church.getPhone()));
+                    startActivity(intent);
+                }
+            });
+            dialog.setNegativeButton(R.string.cancel, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+
+        }
+    }
+
+    @OnClick(R.id.mail)
+    public void sendEmail() {
+        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        emailIntent.setType("plain/text");
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{church.getMail()});
+        startActivity(Intent.createChooser(emailIntent, "Envoyer un email..."));
     }
 
     @Subscribe(sticky = true)
@@ -208,7 +275,7 @@ public class ChurchActivity extends AppCompatActivity implements OnMapReadyCallb
         phone.setText(church.getPhone());
         website.setText(church.getWebsite());
 
-        if (church.getMail() != null && !church.getMail().equals("")){
+        if (church.getMail() != null && !church.getMail().equals("")) {
             mail.setVisibility(View.VISIBLE);
             mail.setText(church.getMail());
         } else {
@@ -246,5 +313,38 @@ public class ChurchActivity extends AppCompatActivity implements OnMapReadyCallb
         Log.i(getClass().getSimpleName(), "zoomTo(" + latitude + ", " + longitude);
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 123: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    final GlobalAlertDialog dialog = new GlobalAlertDialog(this);
+                    dialog.setTitle(getString(R.string.call));
+                    dialog.setMessage(church.getPhone());
+                    dialog.setPositiveButton(R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + church.getPhone()));
+                            startActivity(intent);
+                        }
+                    });
+                    dialog.setNegativeButton(R.string.cancel, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 }

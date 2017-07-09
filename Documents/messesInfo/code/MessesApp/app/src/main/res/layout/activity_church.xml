@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/title"
@@ -53,9 +53,10 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:apiKey="@string/google_API_key"/>
+            android:apiKey="@string/google_API_key" />
 
         <TextView
+            android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center"
@@ -63,41 +64,53 @@
             android:gravity="center"
             android:text="@string/contact"
             android:textAllCaps="true"
+            android:padding="5dp"
+            android:drawableRight="@drawable/selector_arrow"
+            android:drawableEnd="@drawable/selector_arrow"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/phone"
+        <LinearLayout
+            android:id="@+id/contact_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:textColor="@color/blue"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textColor="@color/blue"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/blue"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/blue"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/mail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/blue"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/website"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/blue"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
+            android:id="@+id/schedules"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center"
@@ -110,124 +123,133 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/schedules_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/openings"
-            android:textAllCaps="true"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/openings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/openings"
+                android:textAllCaps="true"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/receptions"
-            android:textAllCaps="true"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/openings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/receptions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/receptions"
+                android:textAllCaps="true"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/masses"
-            android:textAllCaps="true"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/receptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/masses"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/masses"
+                android:textAllCaps="true"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/confessions"
-            android:textAllCaps="true"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/masses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/confessions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/confessions"
+                android:textAllCaps="true"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/praises"
-            android:textAllCaps="true"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/confessions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/praises"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/praises"
+                android:textAllCaps="true"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/adorations"
-            android:textAllCaps="true"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/praises"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/adorations"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/adorations"
+                android:textAllCaps="true"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/rosaries"
-            android:textAllCaps="true"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/adorations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rosaries"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/rosaries"
+                android:textAllCaps="true"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rosaries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

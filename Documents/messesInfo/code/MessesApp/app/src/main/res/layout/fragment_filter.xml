@@ -25,6 +25,18 @@
             android:layout_height="wrap_content">
 
             <RadioButton
+                android:id="@+id/church"
+                style="@style/Material.Drawable.RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/church"
+                android:textColor="@color/red"
+                android:checked="true"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <RadioButton
                 android:id="@+id/masse"
                 style="@style/Material.Drawable.RadioButton"
                 android:layout_width="wrap_content"
@@ -32,6 +44,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/masse"
                 android:textColor="@color/red"
+                android:textStyle="bold"
                 android:textSize="14sp" />
 
             <RadioButton
@@ -42,6 +55,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/praise"
                 android:textColor="@color/red"
+                android:textStyle="bold"
                 android:textSize="14sp" />
 
             <RadioButton
@@ -52,6 +66,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/confession"
                 android:textColor="@color/red"
+                android:textStyle="bold"
                 android:textSize="14sp" />
 
             <RadioButton
@@ -62,6 +77,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/activity"
                 android:textColor="@color/red"
+                android:textStyle="bold"
                 android:textSize="14sp" />
         </RadioGroup>
 
@@ -83,6 +99,7 @@
             android:background="@drawable/shape_rectangle_radius_5_white_border_gray"
             android:hint="@string/write_a_city"
             android:padding="5dp"
+            android:textStyle="bold"
             android:textColor="@color/red"
             android:textColorHint="@color/red"
             android:textSize="14sp" />

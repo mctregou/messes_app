@@ -80,7 +80,7 @@ public class SearchFragment extends Fragment {
         church.setAddress("Place d'Estienne d'Orves");
         church.setZipcode("75009");
         church.setCity("Paris");
-        church.setPhone("01 48 74 12 77");
+        church.setPhone("06 77 45 06 69");
         church.setWebsite("http://latriniteparis.com/");
         church.setMail("contact@latriniteparis.com");
         church.setLatitude(48.876575f);
@@ -138,7 +138,7 @@ public class SearchFragment extends Fragment {
         church2.setCity("Paris");
         church2.setLatitude(48.877651f);
         church2.setLongitude(2.341785f);
-        church2.setPhone("01 48 78 92 72");
+        church.setPhone("06 77 45 06 69");
         church2.setWebsite("http://www.notredamedelorette.org/");
         church2.setMail("nd.lorette@wanadoo.fr");
         church2.setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/NotreDameDeLoretteFacadeSud.JPG/280px-NotreDameDeLoretteFacadeSud.JPG");
@@ -192,7 +192,7 @@ public class SearchFragment extends Fragment {
         church3.setCity("Paris");
         church3.setLatitude(48.874500f);
         church3.setLongitude(2.327754f);
-        church3.setPhone("01 45 26 65 34");
+        church.setPhone("06 77 45 06 69");
         church3.setWebsite("http://www.saintlouisantin.fr/horaires.php");
         church3.setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/%C3%89glise_Saint-Louis-d%27Antin_2.jpg/280px-%C3%89glise_Saint-Louis-d%27Antin_2.jpg");
 
