@@ -307,6 +307,8 @@ public class SearchMapFragment extends Fragment implements OnMapReadyCallback, G
     }
 
     private void goToMyPosition() {
+        Location location = googleMap.getMyLocation();
+        googleMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
 
     }
 }
